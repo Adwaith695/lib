@@ -1,8 +1,8 @@
+<?php include 'partials/session.php'; ?>
 <?php include 'partials/header.php';
     include 'partials/nav.php'; 
-        include 'partials/sidenav.php'; 
+    include 'partials/sidenav.php'; 
 ?>
-
 <!-- write your code hear -->
 <div class="container-fluid">
      <ol class="breadcrumb mb-4 mt-2">
@@ -23,8 +23,8 @@
   </thead>
   <tbody>
   <?php include '../connection/db.php'; 
-
-$books = "SELECT * FROM `book` WHERE 1";
+$admin_id = $_SESSION['admin_id'];
+$books = "SELECT * FROM `book` WHERE `admin_id`='$admin_id'";
 $fetch_all_queries =mysqli_query($connect,$books);
 
 while($row = mysqli_fetch_assoc($fetch_all_queries)){

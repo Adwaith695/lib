@@ -1,3 +1,4 @@
+<?php include 'partials/session.php'; ?>
 <?php include 'partials/header.php'; ?>
     <?php include 'partials/nav.php'; ?>
         <?php include 'partials/sidenav.php'; ?>
@@ -56,6 +57,7 @@
 <?php include 'partials/footer.php' ;?>
 <?php 
 include '../connection/db.php';
+$admin_id = $_SESSION['admin_id'];
 if(isset($_POST['addbook'])){
     $bookId = $_POST['bookId'];
     $isbn = $_POST['isbn'];
@@ -64,7 +66,7 @@ if(isset($_POST['addbook'])){
     $edition = $_POST['edition'];
     $status =$_POST['status'];
 
-    $query = "INSERT INTO `book`(`book_id`, `isbn`, `title`, `author`, `edition`, `status`) VALUES ('$bookId','$isbn','$title','$author','$edition','$status')";
+    $query = "INSERT INTO `book`(`admin_id`,`book_id`, `isbn`, `title`, `author`, `edition`, `status`) VALUES ('$admin_id','$bookId','$isbn','$title','$author','$edition','$status')";
     $insert = mysqli_query($connect,$query);
     if(!$insert){
         die("query Failed".mysqli_error());

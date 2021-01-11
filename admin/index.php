@@ -1,4 +1,5 @@
 <?php ob_start(); ?>
+<?php include 'partials/session.php'; ?>
 <?php include 'partials/header.php'; ?>
         <?php include 'partials/nav.php'; ?>
             <?php include 'partials/sidenav.php'; ?>

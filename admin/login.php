@@ -85,7 +85,7 @@ if(isset($_POST['login'])){
         if($email === $admin_email && $password === $admin_pass){
             $_SESSION['admin_name'] =$admin_name;
             $_SESSION['admin_email'] =$admin_email;
-            $_SESSION['admi_id']=$admin_id;
+            $_SESSION['admin_id']=$admin_id;
             header("Location: index.php");
         }
     }else{
