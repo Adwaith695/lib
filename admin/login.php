@@ -43,10 +43,8 @@
                         <div class="form-group">
                             <label for="signup">Don't have an account</label>
                             <span><a href="/Register"> signup </a></span>
-                          </div>
-                          <div id="logerror"></div>
-                            
-                             
+                          </div>                            
+                          <!-- Div removed -->
                         <button type="submit"  class="btn btn-primary btn-block" name="login" >Login</button>
                       </form>
                       
@@ -91,7 +89,6 @@ if(isset($_POST['login'])){
             header("Location: index.php");
         }
     }else{
-
         echo 'Wrong Username or Password';
     }
 }
