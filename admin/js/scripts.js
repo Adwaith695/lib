@@ -20,3 +20,21 @@
         $("body").toggleClass("sb-sidenav-toggled");
     });
 })(jQuery);
+
+
+function login(){
+    const email = document.getElementById('uem').value;
+    const pass = document.getElementById('ups').value;
+    let logerrors=[];
+    if(!email || ! pass){
+        logerrors.push({msg:'Please Fill all the fields'});
+    }
+    if(logerrors.length >0){
+        document.getElementById("logerror").className = 'alert alert-danger';
+        logerrors.forEach(function(logerror){
+            document.getElementById("logerror").textContent = logerror.msg;
+        });
+    }else{
+        document.getElementById('login-user').submit();
+    }
+}

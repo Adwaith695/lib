@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,7 +28,7 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-12 col-sm-6 col-md-3">
-                    <form class="form-container" method="POST" action="/login" id="login-user"> 
+                    <form class="form-container" method="POST" action="" id="login-user"> 
                       <div class="form-group">
                          <h3><center> Login </center></h3>
                       </div>
@@ -46,7 +47,7 @@
                           <div id="logerror"></div>
                             
                              
-                        <button type="submit" class="btn btn-primary btn-block" >Login</button>
+                        <button type="submit"  class="btn btn-primary btn-block" name="login" >Login</button>
                       </form>
                       
                 </div>
@@ -58,6 +59,41 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/scripts.js"></script>
+    <script src="js/scripts.js"></script>
 </body>
 </html>
+<?php 
+include '../connection/db.php';
+if(isset($_POST['login'])){
+    $email=$_POST['email'];
+    $password=$_POST['password'];
+    $email =mysqli_real_escape_string($connect,$email);
+    $password =mysqli_real_escape_string($connect,$password);
+
+    $query ="SELECT * FROM `admin` WHERE `admin_email`='$email' AND `admin_password` = '$password'";
+
+    $select_user = mysqli_query($connect,$query);
+    $count = mysqli_num_rows($select_user);  
+    while($row = mysqli_fetch_assoc($select_user)){
+        
+        $admin_name=$row['admin_name'];
+        $admin_email =$row['admin_email'];
+        $admin_pass = $row['admin_password'];
+        $admin_id=$row['id'];
+
+    }
+    
+    if($count == 1){
+        if($email === $admin_email && $password === $admin_pass){
+            $_SESSION['admin_name'] =$admin_name;
+            $_SESSION['admin_email'] =$admin_email;
+            $_SESSION['admi_id']=$admin_id;
+            header("Location: index.php");
+        }
+    }else{
+
+        echo 'Wrong Username or Password';
+    }
+}
+
+?>

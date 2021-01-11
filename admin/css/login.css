@@ -1,7 +1,8 @@
 
 body {
     margin-top: 100px;
-    background-color: #222;
+    background-color: white;
+    /* #222 */
 }
 
 .form-container{
