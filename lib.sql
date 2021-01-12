@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 11, 2021 at 11:39 AM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.11
+-- Generation Time: Jan 12, 2021 at 05:53 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,6 +34,14 @@ CREATE TABLE `admin` (
   `admin_name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `admin_email`, `admin_password`, `admin_name`) VALUES
+(1, 'admin@gmail.com', '123456', 'Nithin'),
+(2, 'nithin@gmail.com', '123456', 'nithin');
+
 -- --------------------------------------------------------
 
 --
@@ -52,13 +60,22 @@ CREATE TABLE `batch` (
 --
 
 CREATE TABLE `book` (
+  `admin_id` int(10) NOT NULL,
   `book_id` varchar(100) NOT NULL,
   `isbn` int(100) NOT NULL,
   `title` varchar(100) NOT NULL,
   `author` varchar(100) NOT NULL,
   `edition` int(100) NOT NULL,
-  `status` varchar(100) NOT NULL
+  `status` varchar(100) NOT NULL,
+  `availability` tinyint(1) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `book`
+--
+
+INSERT INTO `book` (`admin_id`, `book_id`, `isbn`, `title`, `author`, `edition`, `status`, `availability`) VALUES
+(1, '123', 123456, 'Operating system', 'NITHIN', 15, 'good', 1);
 
 -- --------------------------------------------------------
 
@@ -68,8 +85,10 @@ CREATE TABLE `book` (
 
 CREATE TABLE `issued` (
   `issued_id` int(10) NOT NULL,
+  `std_id` int(10) NOT NULL,
+  `book_id` int(10) NOT NULL,
   `issued_date` date NOT NULL,
-  `return_date` date NOT NULL,
+  `return_date` date DEFAULT NULL,
   `batch` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -126,7 +145,7 @@ ALTER TABLE `student`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `batch`

@@ -25,7 +25,7 @@ if(isset($_POST['addbook'])){
         $book_search = "SELECT * FROM `book` WHERE `book_id` = '$bookId'";
         $search_query = mysqli_query($connect,$book_search);
         $count = mysqli_num_rows($search_query);
-        if($count ==1){
+        if($count == 1){
             echo '<div class="alert alert-danger">Book Id already</div>';
         }else{
             $query = "INSERT INTO `book`(`admin_id`,`book_id`, `isbn`, `title`, `author`, `edition`, `status`) VALUES ('$admin_id','$bookId','$isbn','$title','$author','$edition','$status')";

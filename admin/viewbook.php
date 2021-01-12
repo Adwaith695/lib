@@ -17,8 +17,8 @@
       <th scope="col">TITLE</th>
       <th scope="col">Author</th>
       <th scope="col">Edition</th>
-      <th scope="col">Delete</th>
       <th scope="col">Edit</th>
+      <th scope="col">Available</th>
     </tr>
   </thead>
   <tbody>
@@ -33,14 +33,19 @@ while($row = mysqli_fetch_assoc($fetch_all_queries)){
     $title =$row['title'];
     $author =$row['author'];
     $edition =$row['edition'];
+    $avail = $row['availability'];
     echo "<tr>";  
     echo "<td>{$book_id}</td>";
     echo "<td>{$isbn}</td>";
     echo "<td>{$title}</td>";
     echo "<td>{$author}</td>";
     echo "<td>{$edition}</td>";
-    echo "<td><a href='index_admin.php?menu=posts&delete_post={$book_id}'>Delete</a></td>";
-    echo "<td><a href='index_admin.php?menu=posts&source=edit_post&p_id={$book_id}'>Edit</a></td>";
+    echo "<td><a href='viewbook.php?source=edit_post&p_id={$book_id}'>Edit</a></td>";
+    if($avail == true){
+      echo "<td><center><i class='fa fa-check fa-lg'></i></center></td>";
+    }else{
+      echo "<td><center><i class='fa fa-times fa-lg'></i></center></td>";
+    }
     echo "</tr>";
 }
 ?>   
