@@ -9,7 +9,38 @@
         <li class="breadcrumb-item active">Add Book</li>
     </ol>
         <a href="viewbook.php"> <button class="btn btn-primary my-2 my-sm-0"> View All Books</button></a><br><br>
+        <?php 
+include '../connection/db.php';
+$admin_id = $_SESSION['admin_id'];
+if(isset($_POST['addbook'])){
+    $bookId = $_POST['bookId'];
+    $isbn = $_POST['isbn'];
+    $title =$_POST['title'];
+    $author= $_POST['author'];
+    $edition = $_POST['edition'];
+    $status =$_POST['status'];
+    if(!$bookId || !$isbn || !$title || !$author || !$status ){
+        echo '<div class="alert alert-danger">Please fill all the fields</div>';
+    }else{
+        $book_search = "SELECT * FROM `book` WHERE `book_id` = '$bookId'";
+        $search_query = mysqli_query($connect,$book_search);
+        $count = mysqli_num_rows($search_query);
+        if($count ==1){
+            echo '<div class="alert alert-danger">Book Id already</div>';
+        }else{
+            $query = "INSERT INTO `book`(`admin_id`,`book_id`, `isbn`, `title`, `author`, `edition`, `status`) VALUES ('$admin_id','$bookId','$isbn','$title','$author','$edition','$status')";
+            $insert = mysqli_query($connect,$query);
+            if(!$insert){
+                echo '<div class="alert alert-danger">Failed! Please try again later </div>';
+            }else{
+                header('Location:viewbook.php');
+            }
+        }
         
+    }
+     
+}
+?>
         <form action="" method="POST" id="add-book">
             <div class="form-group">
                 <label for="title"> Book ID</label>
@@ -55,23 +86,3 @@
     </div>
 </div>
 <?php include 'partials/footer.php' ;?>
-<?php 
-include '../connection/db.php';
-$admin_id = $_SESSION['admin_id'];
-if(isset($_POST['addbook'])){
-    $bookId = $_POST['bookId'];
-    $isbn = $_POST['isbn'];
-    $title =$_POST['title'];
-    $author= $_POST['author'];
-    $edition = $_POST['edition'];
-    $status =$_POST['status'];
-
-    $query = "INSERT INTO `book`(`admin_id`,`book_id`, `isbn`, `title`, `author`, `edition`, `status`) VALUES ('$admin_id','$bookId','$isbn','$title','$author','$edition','$status')";
-    $insert = mysqli_query($connect,$query);
-    if(!$insert){
-        die("query Failed".mysqli_error());
-    }else{
-        header('Location:viewbook.php');
-    }
-}
-?>
