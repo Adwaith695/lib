@@ -7,3 +7,10 @@
 #selGen{
     width: 250px;
 }
+
+.not-avail {
+    color: red;
+}
+.avail {
+    color: green;
+}

@@ -14,15 +14,38 @@ include '../connection/db.php';
         </ol>
     </div>
     <div class="col-md-6">        
-        <form action="/admin/brand" method="POST">
+        <form action="" method="POST">
             <div class="form-group">
                 <label for="Brand">Batch  </label>
                 <input type="text" class="form-control" name="batch">
             </div>
             <div class="form-group">
-               <button class="btn btn-primary my-2 my-sm-0" type="submit" > Add Batch </button>
+               <button class="btn btn-primary my-2 my-sm-0" type="submit" name="addbatch"> Add Batch </button>
             </div>
         </form>
+        <?php 
+            if(isset($_POST['addbatch'])){
+                $bat = $_POST['batch'];
+                if(!$bat){
+                    echo "<div class='alert alert-danger'>Please Enter the batch</div>";
+                }else{
+                    $cbe = "SELECT * FROM `batch` WHERE `batch` = '$bat'";
+                    $cbef = mysqli_query($connect,$cbe);
+                    $count = mysqli_num_rows($cbef);
+                    if($count > 0){
+                        echo "<div class='alert alert-danger'>Batch already exist</div>";
+                    }else{
+                        $ibq = "INSERT INTO `batch`(`batch`) VALUES ('{$bat}')";
+                        $ibqc = mysqli_query($connect,$ibq);
+                        if(!$ibqc){
+                            echo "<div class='alert alert-danger'>Batch adding failed</div>";
+                        }else{
+                            header('Location:batch.php');
+                        }
+                    }
+                }
+            }
+        ?>
    </div>
    <div class="col-md-6">        
        <h4>Batchs</h4>

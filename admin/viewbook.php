@@ -33,7 +33,7 @@ while($row = mysqli_fetch_assoc($fetch_all_queries)){
     $title =$row['title'];
     $author =$row['author'];
     $edition =$row['edition'];
-    $avail = $row['availability'];
+    $avail = $row['avail'];
     echo "<tr>";  
     echo "<td>{$book_id}</td>";
     echo "<td>{$isbn}</td>";
@@ -42,9 +42,9 @@ while($row = mysqli_fetch_assoc($fetch_all_queries)){
     echo "<td>{$edition}</td>";
     echo "<td><a href='viewbook.php?source=edit_post&p_id={$book_id}'>Edit</a></td>";
     if($avail == true){
-      echo "<td><center><i class='fa fa-check fa-lg'></i></center></td>";
+      echo "<td><center><i class='fa fa-check fa-lg avail'></i></center></td>";
     }else{
-      echo "<td><center><i class='fa fa-times fa-lg'></i></center></td>";
+      echo "<td><center><i class='fa fa-times fa-lg not-avail'></i></center></td>";
     }
     echo "</tr>";
 }

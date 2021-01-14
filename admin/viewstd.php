@@ -8,7 +8,7 @@ include '../connection/db.php';
 
 <div class="container-fluid">
     <ol class="breadcrumb mb-4 mt-2">
-         <li class="breadcrumb-item active">View Books</li>
+         <li class="breadcrumb-item active">View Students</li>
      </ol>
     <div class="row">
         <div class="col-12 col-sm-6"> 
