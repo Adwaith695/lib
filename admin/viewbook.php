@@ -9,7 +9,7 @@
          <li class="breadcrumb-item active">View Books</li>
      </ol>
      <a href="addbook.php"> <button class="btn btn-primary my-2 my-sm-0"> Add Book</button></a><br><br>
-     <table class="table">
+<table class="table">
   <thead class="thead-dark">
     <tr>
       <th scope="col">Book ID</th>

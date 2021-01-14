@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 12, 2021 at 05:53 PM
+-- Generation Time: Jan 14, 2021 at 09:52 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -39,8 +39,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `admin_email`, `admin_password`, `admin_name`) VALUES
-(1, 'admin@gmail.com', '123456', 'Nithin'),
-(2, 'nithin@gmail.com', '123456', 'nithin');
+(1, 'admin@gmail.com', '123456', 'Nithin');
 
 -- --------------------------------------------------------
 
@@ -52,6 +51,14 @@ CREATE TABLE `batch` (
   `batch_id` int(10) NOT NULL,
   `batch` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `batch`
+--
+
+INSERT INTO `batch` (`batch_id`, `batch`) VALUES
+(1, '2019-2022'),
+(2, '2018-2021');
 
 -- --------------------------------------------------------
 
@@ -67,15 +74,8 @@ CREATE TABLE `book` (
   `author` varchar(100) NOT NULL,
   `edition` int(100) NOT NULL,
   `status` varchar(100) NOT NULL,
-  `availability` tinyint(1) DEFAULT 1
+  `avail` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `book`
---
-
-INSERT INTO `book` (`admin_id`, `book_id`, `isbn`, `title`, `author`, `edition`, `status`, `availability`) VALUES
-(1, '123', 123456, 'Operating system', 'NITHIN', 15, 'good', 1);
 
 -- --------------------------------------------------------
 
@@ -85,26 +85,11 @@ INSERT INTO `book` (`admin_id`, `book_id`, `isbn`, `title`, `author`, `edition`,
 
 CREATE TABLE `issued` (
   `issued_id` int(10) NOT NULL,
-  `std_id` int(10) NOT NULL,
   `book_id` int(10) NOT NULL,
+  `ad_no` int(10) NOT NULL,
   `issued_date` date NOT NULL,
   `return_date` date DEFAULT NULL,
   `batch` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `student`
---
-
-CREATE TABLE `student` (
-  `stu_id` int(10) NOT NULL,
-  `ad_no` varchar(10) NOT NULL,
-  `stu_name` varchar(100) NOT NULL,
-  `gender` varchar(100) NOT NULL,
-  `batch` varchar(10) NOT NULL,
-  `book taken` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -131,13 +116,6 @@ ALTER TABLE `issued`
   ADD PRIMARY KEY (`issued_id`);
 
 --
--- Indexes for table `student`
---
-ALTER TABLE `student`
-  ADD PRIMARY KEY (`stu_id`),
-  ADD UNIQUE KEY `ad_no` (`ad_no`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -145,25 +123,19 @@ ALTER TABLE `student`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `batch`
 --
 ALTER TABLE `batch`
-  MODIFY `batch_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `batch_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `issued`
 --
 ALTER TABLE `issued`
   MODIFY `issued_id` int(10) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `student`
---
-ALTER TABLE `student`
-  MODIFY `stu_id` int(10) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

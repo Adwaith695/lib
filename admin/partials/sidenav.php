@@ -26,8 +26,8 @@
                             </a>
                             <div class="collapse" id="collapsestd" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="viewstds.php">View Students</a>
-                                    <a class="nav-link" href="addstds.php">Add Students</a>
+                                    <a class="nav-link" href="viewstd.php">View Students</a>
+                                    <a class="nav-link" href="addstds.php">Approval</a>
                                     <a class="nav-link" href="batch.php">Batch</a>
                                 </nav>
                             </div>
