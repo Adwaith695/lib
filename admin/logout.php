@@ -2,5 +2,5 @@
    $_SESSION['admin_name'] =null;
    $_SESSION['admin_email'] =null;
    $_SESSION['admin_id']=null;
-    header("Location: login.php");
+    header("Location: ../index.php");
 ?>

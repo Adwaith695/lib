@@ -1,4 +1,6 @@
-<?php ob_start(); ?>
+<?php ob_start(); 
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,26 +16,76 @@
     <!-- Custom Fonts -->
     <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
- <!-- Custom CSS -->
- <link href="/css/search.css" rel="stylesheet">  
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+ <link href="css/search.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container-fluid">
+<?php include 'partials/nav.php'; ?>
+    <div class="container-fluid mt-5">
         <h1 class="display-4 qt">"TODAY A READER, TOMORROW A LEADER"</h1>
-      </div>
-        <div class="container-fluid in">
-            <div class="row justify-content-center">
-                <div class="col-12 col-sm-6 ">
-                  <a href="login.php" class="btn btn-info">Login</a>  
-                  <a href="admin/login.php" class="btn btn-info">Admin login</a>  
-            </div>
-        </div><br><br>
+    </div>
+    <div class="container-fluid in">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-6 ">
+                <form action="" method="POST" class="form-container">
+                    <div class="input-group">
+                        <input type="text" name="book" placeholder="What you are looking for ?" class="form-control">
+                        <button type="submit" class="btn btn-primary" name="search"> Search </button>
+                    </div>
+                </form>
+        </div>
+    </div><br><br>
+    <?php 
+    if(isset($_POST['search'])){
+      $letter =$_POST['book'];
+      if($letter){
+        ?>
+        <table class="table table-bordered table-light">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Book ID</th>
+            <th scope="col">ISBN</th>
+            <th scope="col">TITLE</th>
+            <th scope="col">Author</th>
+            <th scope="col">Edition</th>
+            <th scope="col">Available</th>
+          </tr>
+        </thead>
+        <tbody>
+        <?php include 'connection/db.php'; 
+        
+        $books = "SELECT * FROM `book` WHERE `title` LIKE '%$letter%'";
+        $fetch_all_queries =mysqli_query($connect,$books);
+        
+        while($row = mysqli_fetch_assoc($fetch_all_queries)){
+            $book_id =$row['book_id'];
+            $isbn =$row['isbn'];
+            $title =$row['title'];
+            $author =$row['author'];
+            $edition =$row['edition'];
+            $avail = $row['avail'];
+            echo "<tr>";  
+            echo "<td>{$book_id}</td>";
+            echo "<td>{$isbn}</td>";
+            echo "<td>{$title}</td>";
+            echo "<td>{$author}</td>";
+            echo "<td>{$edition}</td>";
+            if($avail == true){
+              echo "<td><center><i class='fa fa-check fa-lg avail'></i></center></td>";
+            }else{
+              echo "<td><center><i class='fa fa-times fa-lg not-avail'></i></center></td>";
+            }
+            echo "</tr>";
+        }
+      ?>   
+        </tbody>
+      </table>
+      <?php
+      }
+      
+    }
+    
+    ?>
          
          
 

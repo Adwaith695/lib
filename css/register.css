@@ -1,0 +1,11 @@
+body {
+    margin-top: 10px;
+    background-color: #222 ;
+}
+
+.form-container{
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+     
+}

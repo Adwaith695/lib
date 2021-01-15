@@ -1,4 +1,8 @@
-<?php session_start();?>
+<?php session_start();
+if(isset($_SESSION['user_id'])){
+    header('Location: index.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,13 +18,7 @@
     <!-- Custom Fonts -->
     <!-- <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
- <!-- Custom CSS -->
+    <
  <link href="css/login.css" rel="stylesheet">  
 </head>
 <body>
@@ -76,7 +74,7 @@ if(isset($_POST['login'])){
                     $_SESSION['user_ad_no']= $user_ad_no;
                     $_SESSION['user_id'] =$user_id;
                     $_SESSION['user_status']=$user_status;
-                    header("Location: student.php");
+                    header("Location: index.php");
                 }else{
                     echo '<div class="alert alert-info mt-3">Please wait for the approval</div>';
                 }

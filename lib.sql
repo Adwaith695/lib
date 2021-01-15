@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 14, 2021 at 09:52 AM
+-- Generation Time: Jan 15, 2021 at 12:18 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -58,7 +58,8 @@ CREATE TABLE `batch` (
 
 INSERT INTO `batch` (`batch_id`, `batch`) VALUES
 (1, '2019-2022'),
-(2, '2018-2021');
+(2, '2018-2021'),
+(3, '2020-2022');
 
 -- --------------------------------------------------------
 
@@ -77,6 +78,13 @@ CREATE TABLE `book` (
   `avail` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `book`
+--
+
+INSERT INTO `book` (`admin_id`, `book_id`, `isbn`, `title`, `author`, `edition`, `status`, `avail`) VALUES
+(1, '123', 123456, 'Operating system', 'NITHIN', 15, 'good', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -85,12 +93,21 @@ CREATE TABLE `book` (
 
 CREATE TABLE `issued` (
   `issued_id` int(10) NOT NULL,
-  `book_id` int(10) NOT NULL,
+  `book_id` varchar(100) NOT NULL,
   `ad_no` int(10) NOT NULL,
   `issued_date` date NOT NULL,
   `return_date` date DEFAULT NULL,
   `batch` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `issued`
+--
+
+INSERT INTO `issued` (`issued_id`, `book_id`, `ad_no`, `issued_date`, `return_date`, `batch`) VALUES
+(2, '123', 1012, '2021-01-14', '2021-01-15', '2019-2022'),
+(3, '123', 1012, '2021-01-15', '2021-01-15', '2019-2022'),
+(4, '123', 1012, '2021-01-15', NULL, '2019-2022');
 
 --
 -- Indexes for dumped tables
@@ -129,13 +146,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `batch`
 --
 ALTER TABLE `batch`
-  MODIFY `batch_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `batch_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `issued`
 --
 ALTER TABLE `issued`
-  MODIFY `issued_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `issued_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php include 'connection/db.php';
+session_start();
+if(isset($_SESSION['user_id'])){
+    header('Location: index.php');
+}
 ?>
 <head>
     <meta charset="utf-8">
@@ -13,7 +17,7 @@
     <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
      
- <link href="/css/login.css" rel="stylesheet">  
+ <link href="css/register.css" rel="stylesheet">  
 </head>
 <body>
         <div class="container-fluid">
