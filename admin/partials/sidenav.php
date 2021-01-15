@@ -40,7 +40,7 @@
                             <div class="collapse" id="irh" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="issuebook.php">Issue Book</a>
-                                    <a class="nav-link" href="returnbook.php">Return Book</a>
+                                    <a class="nav-link" href="return.php">Return Book</a>
                                     <a class="nav-link" href="bookhistory.php">Book history</a>
                                 </nav>
                             </div>
