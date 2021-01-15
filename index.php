@@ -39,48 +39,53 @@ session_start();
     if(isset($_POST['search'])){
       $letter =$_POST['book'];
       if($letter){
-        ?>
-        <table class="table table-bordered table-light">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">Book ID</th>
-            <th scope="col">ISBN</th>
-            <th scope="col">TITLE</th>
-            <th scope="col">Author</th>
-            <th scope="col">Edition</th>
-            <th scope="col">Available</th>
-          </tr>
-        </thead>
-        <tbody>
-        <?php include 'connection/db.php'; 
+         include 'connection/db.php'; 
         
-        $books = "SELECT * FROM `book` WHERE `title` LIKE '%$letter%'";
+        $books = "SELECT * FROM `book` WHERE `title` LIKE '%$letter%' AND `status` = 'Good'";
         $fetch_all_queries =mysqli_query($connect,$books);
-        
-        while($row = mysqli_fetch_assoc($fetch_all_queries)){
-            $book_id =$row['book_id'];
-            $isbn =$row['isbn'];
-            $title =$row['title'];
-            $author =$row['author'];
-            $edition =$row['edition'];
-            $avail = $row['avail'];
-            echo "<tr>";  
-            echo "<td>{$book_id}</td>";
-            echo "<td>{$isbn}</td>";
-            echo "<td>{$title}</td>";
-            echo "<td>{$author}</td>";
-            echo "<td>{$edition}</td>";
-            if($avail == true){
-              echo "<td><center><i class='fa fa-check fa-lg avail'></i></center></td>";
-            }else{
-              echo "<td><center><i class='fa fa-times fa-lg not-avail'></i></center></td>";
-            }
-            echo "</tr>";
+        if(mysqli_num_rows($fetch_all_queries) > 0){
+            ?>
+          <table class="table table-bordered table-light">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Book ID</th>
+              <th scope="col">ISBN</th>
+              <th scope="col">TITLE</th>
+              <th scope="col">Author</th>
+              <th scope="col">Edition</th>
+              <th scope="col">Available</th>
+            </tr>
+          </thead>
+          <tbody>
+          <?php
+          while($row = mysqli_fetch_assoc($fetch_all_queries)){
+              $book_id =$row['book_id'];
+              $isbn =$row['isbn'];
+              $title =$row['title'];
+              $author =$row['author'];
+              $edition =$row['edition'];
+              $avail = $row['avail'];
+              echo "<tr>";  
+              echo "<td>{$book_id}</td>";
+              echo "<td>{$isbn}</td>";
+              echo "<td>{$title}</td>";
+              echo "<td>{$author}</td>";
+              echo "<td>{$edition}</td>";
+              if($avail == true){
+                echo "<td><center><i class='fa fa-check fa-lg avail'></i></center></td>";
+              }else{
+                echo "<td><center><i class='fa fa-times fa-lg not-avail'></i></center></td>";
+              }
+              echo "</tr>";
+          }
+        ?>   
+          </tbody>
+        </table>
+        <?php
+        }else{
+          echo "<div class='alert alert-danger'>No Books Found</div>";
         }
-      ?>   
-        </tbody>
-      </table>
-      <?php
+      
       }
       
     }

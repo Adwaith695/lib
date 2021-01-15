@@ -97,6 +97,11 @@ if(isset($_GET['del_d_id'])){
         }else{
             $delq = "DELETE FROM `dept` WHERE `dept_id` ='$d_id'";
             $del=mysqli_query($connect,$delq);
+            if(!$del){
+                echo "<div class='alert alert-danger'>Deletion Failed Please try again </div>";
+            }else{
+                header('Location: dept.php');
+            }
         }
     }
 }

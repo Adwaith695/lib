@@ -7,11 +7,11 @@ include '../connection/db.php';
  ?>
 <div class="container-fluid">
     <ol class="breadcrumb mb-4 mt-2">
-        <li class="breadcrumb-item active">Issue Book</li>
+        <li class="breadcrumb-item active">Return A Book</li>
     </ol>
     <div class="col-12 col-sm-6 mt-4">
         <form class="form-inline my-2 my-lg-0" action="" method="POST" id="issueBkID">
-            <input class="form-control mr-sm-2" type="search" placeholder="Enter the Book " aria-label="Search" name="bookid" id="issbk">
+            <input class="form-control mr-sm-2" type="search" placeholder="Enter the Book Id" aria-label="Search" name="bookid" id="issbk">
             <input class="form-control mr-sm-2" type="search" placeholder="Student Admission No " aria-label="Search" name="stdid" id="issto">
             <button class="btn btn-primary my-2 my-sm-0" type="submit" name="return" > Search </button> 
         </form> 
@@ -37,7 +37,7 @@ include '../connection/db.php';
                     $sscqc = mysqli_query($connect,$sscq);
                     $scount =mysqli_num_rows($sscqc);
                     if($scount == 1){
-                        $ibcn = "SELECT * FROM `issued` WHERE `ad_no` =1012 AND `book_id`= '123' AND `return_date` IS NULL";
+                        $ibcn = "SELECT * FROM `issued` WHERE `ad_no` =1012 AND `book_id`= '$bookid' AND `return_date` IS NULL";
                         $ibcnc= mysqli_query($connect,$ibcn);
                         if(!$ibcnc){
                             echo "<div class='alert alert-danger mt-2'>Connection Failed</div>";

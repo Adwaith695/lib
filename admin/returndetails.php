@@ -8,7 +8,7 @@ include '../connection/db.php';
 
 <div class="container-fluid">
     <ol class="breadcrumb mb-4 mt-2">
-         <li class="breadcrumb-item active">View Students</li>
+         <li class="breadcrumb-item active">Return Book Details</li>
      </ol>
     <div class="row">
         <div class="col-12 col-sm-6"> 
@@ -35,45 +35,47 @@ include '../connection/db.php';
                     
                     ?>
                 </select>
-               <button class="btn btn-primary ml-2 my-2 my-sm-0" type="submit" name="viewbatch" >Show</button> 
+               <button class="btn btn-primary ml-2 my-2 my-sm-0" type="submit" name="viewRet" >Show</button> 
              </form>
              
         </div>
     </div>
 <?php 
-if(isset($_POST['viewbatch'])){
+if(isset($_POST['viewRet'])){
   $batch = $_POST['batch'];
   $dept =$_POST['dept'];
   if($batch =="" || $dept == ""){
     echo "<div class='alert alert-danger mt-2'>please select all the options</div>";
   }else{
       ?>
-    <table class="table mt-3">
+    <table class="table mt-3 table-bordered">
     <thead class="thead-dark">
       <tr>
-        <th scope="col">Student Id</th>
-        <th scope="col">Admission no</th>
-        <th scope="col">Name</th>
-        <th scope="col">Status</th>
-        <th scope="col">Delete</th>
+        <th scope="col">Book</th>
+        <th scope="col">Student Name</th>
+        <th scope="col">Batch</th>
+        <th scope="col">Department</th>
+        <th scope="col">Issued Date</th>
       </tr>
     </thead>
     <tbody>
     <?php
-    $vstd = "SELECT * FROM `user` WHERE `user_batch`='$batch' AND `user_course`='$dept'";
+    $vstd = "SELECT book.title, user.user_name,user.user_batch,issued.issued_date,issued.dept FROM `issued` INNER JOIN `book` ON issued.book_id = book.book_id INNER JOIN `user` ON issued.ad_no = user.user_ad_no WHERE issued.batch = '$batch' AND issued.dept ='$dept' AND issued.return_date IS NULL";
     $fetch_all_queries =mysqli_query($connect,$vstd);
     
     while($row = mysqli_fetch_assoc($fetch_all_queries)){
-        $user_id =$row['user_id'];
-        $user_ad_no =$row['user_ad_no'];
+        $title =$row['title'];
         $user_name =$row['user_name'];
-        $user_status =$row['user_status'];
+        $user_batch =$row['user_batch'];
+        $issued_date =$row['issued_date'];
+        $rdept =$row['dept'];
         echo "<tr>";  
-        echo "<td>{$user_id}</td>";
-        echo "<td>{$user_ad_no}</td>";
+        echo "<td>{$title}</td>";
         echo "<td>{$user_name}</td>";
-        echo "<td>{$user_status}</td>";
-        echo "<td><a href='viewstd.php?del_std_id={$user_ad_no}'>Delete</a></td>";
+        echo "<td>{$user_batch}</td>";
+        echo "<td>{$rdept}</td>";
+        echo "<td>{$issued_date}</td>";
+        echo "</tr>";
     }
   }
   

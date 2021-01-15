@@ -23,7 +23,6 @@
             $ad_no = $_SESSION['user_ad_no'];
             $isbhq = "SELECT issued.book_id ,book.title, issued.issued_date, issued.return_date FROM `issued` INNER JOIN `book` ON issued.book_id=book.book_id WHERE issued.ad_no = $ad_no AND issued.return_date IS NULL";
             $fetch_all_queries =mysqli_query($connect,$isbhq);
-            
             while($row = mysqli_fetch_assoc($fetch_all_queries)){
                 $title =$row['title'];
                 $book_id =$row['book_id'];
@@ -34,7 +33,7 @@
                 echo "<td>{$book_id}</td>";
                 echo "<td>{$issued_date}</td>";
                 echo "<td>{$return_date}</td>";
-                echo "<tr>";
+                echo "</tr>";
             }
         ?>
         </tbody>

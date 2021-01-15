@@ -17,6 +17,7 @@
       <th scope="col">TITLE</th>
       <th scope="col">Author</th>
       <th scope="col">Edition</th>
+      <th scope="col">Status</th>
       <th scope="col">Edit</th>
       <th scope="col">Available</th>
     </tr>
@@ -33,6 +34,7 @@ while($row = mysqli_fetch_assoc($fetch_all_queries)){
     $title =$row['title'];
     $author =$row['author'];
     $edition =$row['edition'];
+    $status =$row['status'];
     $avail = $row['avail'];
     echo "<tr>";  
     echo "<td>{$book_id}</td>";
@@ -40,7 +42,8 @@ while($row = mysqli_fetch_assoc($fetch_all_queries)){
     echo "<td>{$title}</td>";
     echo "<td>{$author}</td>";
     echo "<td>{$edition}</td>";
-    echo "<td><a href='viewbook.php?source=edit_post&p_id={$book_id}'>Edit</a></td>";
+    echo "<td>{$status}</td>";
+    echo "<td><a href='editbook.php?p_id={$book_id}'>Edit</a></td>";
     if($avail == true){
       echo "<td><center><i class='fa fa-check fa-lg avail'></i></center></td>";
     }else{

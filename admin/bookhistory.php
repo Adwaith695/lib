@@ -35,13 +35,14 @@ include '../connection/db.php';
             <th scope="col">Book ID</th>
             <th scope="col">Student Name</th>
             <th scope="col">Batch</th>
+            <th scope="col">Dept</th>
             <th scope="col">Issue Date</th>
             <th scope="col">Return Date</th>
         </tr>
         </thead>
         <tbody>
         <?php
-            $isbhq = "SELECT issued.issued_id,issued.book_id,user.user_name, issued.issued_date, issued.return_date, issued.batch FROM `issued` INNER JOIN `user` ON issued.ad_no=user.user_ad_no";
+            $isbhq = "SELECT issued.issued_id,issued.book_id,user.user_name, issued.issued_date, issued.return_date, issued.batch,issued.dept FROM `issued` INNER JOIN `user` ON issued.ad_no=user.user_ad_no";
             $fetch_all_queries =mysqli_query($connect,$isbhq);
             
             while($row = mysqli_fetch_assoc($fetch_all_queries)){
@@ -51,14 +52,16 @@ include '../connection/db.php';
                 $issued_date =$row['issued_date'];
                 $return_date =$row['return_date'];
                 $batch =$row['batch'];
+                $dept =$row['dept'];
                 echo "<tr>";  
                 echo "<td>{$issued_id}</td>";
                 echo "<td>{$book_id}</td>";
                 echo "<td>{$user_name}</td>";
                 echo "<td>{$batch}</td>";
+                echo "<td>{$dept}</td>";
                 echo "<td>{$issued_date}</td>";
                 echo "<td>{$return_date}</td>";
-                echo "<tr>";
+                echo "</tr>";
             }
         }
         

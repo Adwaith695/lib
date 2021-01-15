@@ -11,7 +11,7 @@ include '../connection/db.php';
     </ol>
     <div class="col-12 col-sm-6 mt-4">
         <form class="form-inline my-2 my-lg-0" action="" method="POST" id="issueBkID">
-            <input class="form-control mr-sm-2" type="search" placeholder="Enter the Book " aria-label="Search" name="bookid" id="issbk">
+            <input class="form-control mr-sm-2" type="search" placeholder="Enter the Book ID " aria-label="Search" name="bookid" id="issbk">
             <input class="form-control mr-sm-2" type="search" placeholder="Student Admission No " aria-label="Search" name="stdid" id="issto">
             <button class="btn btn-primary my-2 my-sm-0" type="submit" name="issue" > Search </button> 
         </form> 
@@ -23,7 +23,7 @@ include '../connection/db.php';
         if(!$bookid || !$stdid){
             echo "<div class='alert alert-danger mt-2'>please select all the options</div>";
         }else{
-            $becq= "SELECT * FROM `book`WHERE `book_id`='$bookid'";
+            $becq= "SELECT * FROM `book`WHERE `book_id`='$bookid' AND `status`= 'Good'";
             $becqc = mysqli_query($connect,$becq);
             $becount = mysqli_num_rows($becqc);
             if($becount>0){
@@ -119,7 +119,7 @@ include '../connection/db.php';
                                     </tbody>
                                 </table>
                             </div>
-                            <a class="btn btn-primary" href="issuebook.php?bkid=<?php echo $book_id; ?>&std_id=<?php echo $user_ad_no; ?>&batch=<?php echo $user_batch; ?>">Issue Book</a>
+                            <a class="btn btn-primary" href="issuebook.php?bkid=<?php echo $book_id; ?>&std_id=<?php echo $user_ad_no; ?>&batch=<?php echo $user_batch; ?>&dept=<?php echo $user_course; ?>">Issue Book</a>
                         <?php 
                         }
                     }else{
@@ -136,7 +136,8 @@ include '../connection/db.php';
         $bkid=$_GET['bkid'];
         $std_id=$_GET['std_id'];
         $batch=$_GET['batch'];
-        $isbiq= "INSERT INTO `issued`(`book_id`, `ad_no`, `issued_date`,`batch`) VALUES ('{$bkid}',{$std_id},now(),'{$batch}')" ;
+        $dept=$_GET['dept'];
+        $isbiq= "INSERT INTO `issued`(`book_id`, `ad_no`, `issued_date`,`batch`,`dept`) VALUES ('{$bkid}',{$std_id},now(),'{$batch}','{$dept}')" ;
         $isbiqc = mysqli_query($connect,$isbiq);
 
         if(!$isbiqc){

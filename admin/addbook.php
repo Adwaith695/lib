@@ -69,9 +69,9 @@ if(isset($_POST['addbook'])){
                         <label for="title"> Status </label>
                         <select name="status" id="stat" class="form-control">
                             <option value="">Select</option>
-                            <option value="good">Good</option>
-                            <option value="lost">lost</option>
-                            <option value="destroyed">Destroyed</option>
+                            <option value="Good">Good</option>
+                            <option value="Lost">lost</option>
+                            <option value="Destroyed">Destroyed</option>
                         </select>
                     </div>
                 </div>

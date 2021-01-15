@@ -67,6 +67,7 @@ include '../connection/db.php';
                         echo "<tr>";
                         echo  "<td>{$batch}</td>";
                         echo  "<td><a href='batch.php?del_b_id={$batch_id}'>Delete</a></td>";
+                        echo "</tr>";
                     }
                 }
             ?>
@@ -96,6 +97,11 @@ if(isset($_GET['del_b_id'])){
         }else{
             $delq = "DELETE FROM `batch` WHERE `batch_id` ='$b_id'";
             $del=mysqli_query($connect,$delq);
+            if(!$del){
+                echo "<div class='alert alert-danger'>Deletion Failed Please try again </div>";
+            }else{
+                header('Location: batch.php');
+            }
         }
     }
 }
