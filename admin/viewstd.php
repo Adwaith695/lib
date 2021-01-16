@@ -76,8 +76,6 @@ if(isset($_POST['viewbatch'])){
         echo "<td><a href='viewstd.php?del_std_id={$user_ad_no}'>Delete</a></td>";
     }
   }
-  
-  
 }
 
 if(isset($_GET['del_std_id'])){

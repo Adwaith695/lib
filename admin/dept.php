@@ -36,8 +36,8 @@ include '../connection/db.php';
                     if($count > 0){
                         echo "<div class='alert alert-danger'>Department already exist</div>";
                     }else{
-                        $idq = "INSERT INTO `batch`(`batch`) VALUES ('{$dep}')";
-                        $idqc = mysqli_query($connect,$ibq);
+                        $idq = "INSERT INTO `dept`(`dept`) VALUES ('{$dep}')";
+                        $idqc = mysqli_query($connect,$idq);
                         if(!$idqc){
                             echo "<div class='alert alert-danger'>Department adding failed</div>";
                         }else{
