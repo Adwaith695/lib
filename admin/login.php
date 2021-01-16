@@ -45,8 +45,7 @@ if(isset($_SESSION['admin_id'])){
                           <input type="password" class="form-control"  placeholder="Password" name="password" id="ups">
                         </div>
                         <div class="form-group">
-                            <label for="signup">Don't have an account</label>
-                            <span><a href="/Register"> signup </a></span>
+                            <span><a href="../index.php" class="btn btn-info"> HOME </a></span>
                           </div>                            
                           <!-- Div removed -->
                         <button type="submit"  class="btn btn-primary btn-block" name="login" >Login</button>

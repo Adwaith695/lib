@@ -41,7 +41,10 @@ if(isset($_SESSION['user_id'])){
                         <div class="form-group">
                             <label for="signup">Don't have an account</label>
                             <span><a href="register.php"> signup </a></span>
-                          </div>                            
+                        </div>                            
+                        <div class="form-group">
+                            <span><a href="index.php" class="btn btn-info"> HOME </a></span>
+                        </div>                            
                           <!-- Div removed -->
                         <button type="submit"  class="btn btn-primary btn-block" name="login" >Login</button>
                       </form>

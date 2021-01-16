@@ -56,7 +56,7 @@ if(isset($_SESSION['user_id'])){
                         <div class="form-group">
                         <label for="email">Choose Course</label>
                             <select name="dept" class="form-control">
-                            <option >Choose Batch</option>
+                            <option >Choose Course</option>
                         <?php 
                             $batch_query= "SELECT * FROM `dept`";
                             $batch_fetch = mysqli_query($connect,$batch_query);
