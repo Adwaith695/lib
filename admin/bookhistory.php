@@ -42,7 +42,7 @@ include '../connection/db.php';
         </thead>
         <tbody>
         <?php
-            $isbhq = "SELECT issued.issued_id,issued.book_id,user.user_name, issued.issued_date, issued.return_date, issued.batch,issued.dept FROM `issued` INNER JOIN `user` ON issued.ad_no=user.user_ad_no";
+            $isbhq = "SELECT issued.issued_id,issued.book_id,user.user_name, issued.issued_date, issued.return_date, issued.batch,issued.dept FROM `issued` INNER JOIN `user` ON issued.ad_no=user.user_ad_no WHERE issued.book_id='$hisbkid'";
             $fetch_all_queries =mysqli_query($connect,$isbhq);
             
             while($row = mysqli_fetch_assoc($fetch_all_queries)){
