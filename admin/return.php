@@ -37,7 +37,7 @@ include '../connection/db.php';
                     $sscqc = mysqli_query($connect,$sscq);
                     $scount =mysqli_num_rows($sscqc);
                     if($scount == 1){
-                        $ibcn = "SELECT * FROM `issued` WHERE `ad_no` =1012 AND `book_id`= '$bookid' AND `return_date` IS NULL";
+                        $ibcn = "SELECT * FROM `issued` WHERE `ad_no` =$stdid AND `book_id`= '$bookid' AND `return_date` IS NULL";
                         $ibcnc= mysqli_query($connect,$ibcn);
                         if(!$ibcnc){
                             echo "<div class='alert alert-danger mt-2'>Connection Failed</div>";
