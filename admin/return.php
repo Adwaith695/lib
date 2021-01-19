@@ -128,6 +128,7 @@ include '../connection/db.php';
                                             <th>Admission No</th>
                                             <th>Issue Date</th>
                                             <th>Batch</th>
+                                            <th>Fine</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -137,6 +138,17 @@ include '../connection/db.php';
                                         $book_id =$row['book_id'];
                                         $ad_no =$row['ad_no'];
                                         $issued_date =$row['issued_date'];
+                                        $expected_date = date('Y-m-d', strtotime($issued_date. ' + 14 days'));
+                                        $now =date("Y-m-d");
+                                        $start = strtotime($expected_date);
+                                        $end = strtotime($now);
+                                        $diffInSeconds = $end - $start;
+                                        $diffInDays = $diffInSeconds / 86400;
+                                        if($diffInDays > 0){
+                                            $fine = 5 * $diffInDays;
+                                        }else{
+                                            $fine =0;
+                                        }
                                         $batch =$row['batch'];
 
                                         echo "<tr>";  
@@ -145,6 +157,7 @@ include '../connection/db.php';
                                         echo "<td>{$ad_no}</td>";
                                         echo "<td>{$issued_date}</td>";
                                         echo "<td>{$batch}</td>";
+                                        echo "<td>{$fine}</td>";
                                         echo "</tr>";
                                     }
                                     ?>

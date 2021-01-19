@@ -15,7 +15,8 @@
                 <th scope="col">Book </th>
                 <th scope="col">Book ID</th>
                 <th scope="col">Issue Date</th>
-                <th scope="col">Return Date</th>
+                <th scope="col">Return Without Fine </th>
+                <th scope="col">Fine</th>
             </tr>
         </thead>
         <tbody>
@@ -27,12 +28,23 @@
                 $title =$row['title'];
                 $book_id =$row['book_id'];
                 $issued_date =$row['issued_date'];
-                $return_date =$row['return_date'];
+                $expected_date = date('Y-m-d', strtotime($issued_date. ' + 14 days'));
+                $now =date("Y-m-d");
+                $start = strtotime($expected_date);
+                $end = strtotime($now);
+                $diffInSeconds = $end - $start;
+                $diffInDays = $diffInSeconds / 86400;
+                if($diffInDays > 0){
+                    $fine = 5 * $diffInDays;
+                }else{
+                    $fine =0;
+                }
                 echo "<tr>";  
                 echo "<td>{$title}</td>";
                 echo "<td>{$book_id}</td>";
                 echo "<td>{$issued_date}</td>";
-                echo "<td>{$return_date}</td>";
+                echo "<td>{$expected_date}</td>";
+                echo "<td>{$fine}</td>";
                 echo "</tr>";
             }
         ?>

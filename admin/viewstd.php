@@ -73,7 +73,7 @@ if(isset($_POST['viewbatch'])){
         echo "<td>{$user_ad_no}</td>";
         echo "<td>{$user_name}</td>";
         echo "<td>{$user_status}</td>";
-        echo "<td><a href='viewstd.php?del_std_id={$user_ad_no}'>Delete</a></td>";
+        echo "<td><a href='viewstd.php?del_std_id={$user_ad_no}' class='btn btn-danger'>Delete</a></td>";
     }
   }
 }

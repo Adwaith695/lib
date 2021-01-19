@@ -37,7 +37,7 @@ include '../connection/db.php';
         echo "<td>{$user_dept}</td>";
         echo "<td>{$user_batch}</td>";
         echo "<td>{$user_status}</td>";
-        echo "<td><a href='addstd.php?app={$user_ad_no}'>Approve</a></td>";
+        echo "<td><a href='addstd.php?app={$user_ad_no}' class='btn btn-info'>Approve</a></td>";
     }
     if(isset($_GET['app'])){
         $adm_no = $_GET['app'];

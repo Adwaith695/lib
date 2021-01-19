@@ -56,6 +56,7 @@ if(isset($_POST['viewRet'])){
         <th scope="col">Batch</th>
         <th scope="col">Department</th>
         <th scope="col">Issued Date</th>
+        <th scope="col">Return Date without Fine</th>
       </tr>
     </thead>
     <tbody>
@@ -68,6 +69,7 @@ if(isset($_POST['viewRet'])){
         $user_name =$row['user_name'];
         $user_batch =$row['user_batch'];
         $issued_date =$row['issued_date'];
+        $expected_date = date('Y-m-d', strtotime($issued_date. ' + 14 days'));
         $rdept =$row['dept'];
         echo "<tr>";  
         echo "<td>{$title}</td>";
@@ -75,6 +77,7 @@ if(isset($_POST['viewRet'])){
         echo "<td>{$user_batch}</td>";
         echo "<td>{$rdept}</td>";
         echo "<td>{$issued_date}</td>";
+        echo "<td>{$expected_date}</td>";
         echo "</tr>";
     }
   }
