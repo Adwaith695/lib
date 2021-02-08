@@ -20,6 +20,7 @@ session_start();
  <link href="css/search.css" rel="stylesheet">
 </head>
 <body>
+
 <?php include 'partials/nav.php'; ?>
     <div class="container-fluid mt-5">
         <h1 class="display-4 qt">"TODAY A READER, TOMORROW A LEADER"</h1>

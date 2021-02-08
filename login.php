@@ -6,6 +6,8 @@ if(isset($_SESSION['user_id'])){
 <!DOCTYPE html>
 <html lang="en">
 
+
+
 <head>
 
     <meta charset="utf-8">
@@ -22,12 +24,19 @@ if(isset($_SESSION['user_id'])){
  <link href="css/login.css" rel="stylesheet">  
 </head>
 <body>
+
     
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-12 col-sm-6 col-md-3">
                     <form class="form-container" method="POST" action="" id="login-user"> 
                       <div class="form-group">
+
+ <div class="classToDefineBackgroundSetCss" style="background-image: url('{{asset('assets/pic2.jpg')}}');">
+
+
+                        
+
                          <h3><center> Login </center></h3>
                       </div>
                         <div class="form-group">
